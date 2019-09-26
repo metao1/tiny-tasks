@@ -1,0 +1,27 @@
+<mat-form-field>
+    <input
+        matInput
+        [matDatepicker]="picker"
+        [attr.required]="required"
+        (dateChange)="dateChange($event)"
+        (keydown.enter)="onKeyPressEnter($event)"
+        (dateInput)="dateChange($event)"
+        [formControl]="dateControl"
+        [min]="minDate"
+        [max]="maxDate"
+        [placeholder]="placeholder"
+        [errorStateMatcher]="errorMatcher"
+        [(ngModel)]="planModel.start_time"
+        autocomplete="off"
+    />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker [startAt]="startDate"></mat-datepicker>
+    <mat-error
+        *ngIf="dateControl.hasError('required')">{{ 'common.error.required' | translate: dateControl.errors['required'] }}</mat-error>
+    <mat-error
+        *ngIf="dateControl.hasError('invalidDate')">{{ 'common.error.invalidDate' | translate: dateControl.errors['invalidDate'] }}</mat-error>
+    <mat-error
+        *ngIf="dateControl.hasError('maxDate')">{{ 'common.error.maxDate' | translate: dateControl.errors['maxDate'] }}</mat-error>
+    <mat-error
+        *ngIf="dateControl.hasError('minDate')">{{ 'common.error.minDate' | translate: dateControl.errors['minDate'] }}</mat-error>
+</mat-form-field>

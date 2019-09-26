@@ -1,33 +1,89 @@
-import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
-import { MatButtonModule, MatIconModule, MatInputModule, MatToolbarModule } from '@angular/material';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {HttpClientModule} from '@angular/common/http';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {RouterModule, Routes} from '@angular/router';
+import {MatMomentDateModule} from '@angular/material-moment-adapter';
+import {
+  MatButtonModule,
+  MatCheckboxModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatInputModule,
+  MatNativeDateModule
+} from '@angular/material';
+import 'hammerjs';
 
-import { environment } from '../environments/environment';
-import { AppComponent } from './app.component';
-import { BASE_URL } from './app.tokens';
-import { DefaultTaskService } from './tasks/default-task.service';
-import { LocalTaskService } from './tasks/local-task.service';
-import { TasksModule } from './tasks/tasks.module';
+import {TinyModule} from '@tiny/tiny.module';
+import {TinySharedModule} from '@tiny/shared.module';
+import {TinyPanelModule} from '@tiny/components';
+
+import {AppComponent} from 'app/app.component';
+import {LayoutModule} from 'app/layout/layout.module';
+import {NgxWebstorageModule} from "ngx-webstorage";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {CommonModule} from "@angular/common";
+import {ContentModule} from "./layout/components/content/content.module";
+import {QuickPanelModule} from "./layout/components/quick-panel/quick-panel.module";
+import {tinyConfig} from "app/tiny-config";
+
+const appRoutes: Routes = [
+  {
+    path: 'apps',
+    loadChildren: 'app/main/apps/apps.module#AppsModule'
+  },
+  {
+    path: '**',
+    redirectTo: 'apps'
+  }
+];
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent
+  ],
   imports: [
+    CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
+    RouterModule.forRoot(appRoutes),
+    NgxWebstorageModule.forRoot({prefix: 'tiny', separator: '-'}),
+
+    // Material moment date module
+    MatMomentDateModule,
+
+    // Material
     MatButtonModule,
+    MatCheckboxModule,
+    MatFormFieldModule,
     MatInputModule,
     MatIconModule,
-    MatToolbarModule,
-    TasksModule,
-    HttpClientModule
+    BrowserModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    HttpClientModule,
+    MatNativeDateModule,
+    ReactiveFormsModule,
+    // Tiny modules
+    TinyModule.forRoot(tinyConfig),
+    TinySharedModule,
+    TinyPanelModule,
+    NgbModule,
+    // App modules
+    LayoutModule,
+    RouterModule,
+
+    TinySharedModule,
+
+    ContentModule,
+    QuickPanelModule,
   ],
-  providers: [
-    {provide: BASE_URL, useValue: 'http://localhost:8080'},
-    {provide: 'TaskService', useClass: (environment.useLocalStorage) ? LocalTaskService : DefaultTaskService}
+  bootstrap: [
+    AppComponent
   ],
-  bootstrap: [AppComponent]
+  providers: []
 })
 export class AppModule {
 }

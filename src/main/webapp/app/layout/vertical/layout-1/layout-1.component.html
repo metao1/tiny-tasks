@@ -1,0 +1,74 @@
+<div id="main">
+
+  <!-- TOOLBAR: Above -->
+  <ng-container *ngIf="tinyConfig.layout.toolbar.position === 'above'">
+    <ng-container *ngTemplateOutlet="toolbar"></ng-container>
+  </ng-container>
+  <!-- / TOOLBAR: Above -->
+
+  <div id="container-1" class="container">
+
+    <!-- NAVBAR: Left -->
+    <ng-container *ngIf="tinyConfig.layout.navbar.position === 'left'">
+      <ng-container *ngTemplateOutlet="leftNavbar"></ng-container>
+    </ng-container>
+    <!-- / NAVBAR: Left -->
+
+    <div id="container-2" class="container">
+
+      <!-- TOOLBAR: Below fixed -->
+      <ng-container *ngIf="tinyConfig.layout.toolbar.position === 'below-fixed'">
+        <ng-container *ngTemplateOutlet="toolbar"></ng-container>
+      </ng-container>
+      <!-- / TOOLBAR: Below fixed -->
+
+      <div id="container-3" class="container" tinyPerfectScrollbar
+           [tinyPerfectScrollbarOptions]="{suppressScrollX: true, updateOnRouteChange : true}">
+
+        <!-- TOOLBAR: Below static -->
+        <ng-container *ngIf="tinyConfig.layout.toolbar.position === 'below-static'">
+          <ng-container *ngTemplateOutlet="toolbar"></ng-container>
+        </ng-container>
+        <!-- / TOOLBAR: Below static -->
+
+        <!-- CONTENT -->
+        <content></content>
+        <!-- / CONTENT -->
+
+        <!-- FOOTER: Below static -->
+        <ng-container *ngIf="tinyConfig.layout.footer.position === 'below-static'">
+          <ng-container *ngTemplateOutlet="footer"></ng-container>
+        </ng-container>
+        <!-- / FOOTER: Below static -->
+
+      </div>
+
+      <!-- FOOTER: Below fixed -->
+      <ng-container *ngIf="tinyConfig.layout.footer.position === 'below-fixed'">
+        <ng-container *ngTemplateOutlet="footer"></ng-container>
+      </ng-container>
+      <!-- / FOOTER: Below fixed -->
+
+    </div>
+
+    <!-- NAVBAR: Right -->
+    <ng-container *ngIf="tinyConfig.layout.navbar.position === 'right'">
+      <ng-container *ngTemplateOutlet="rightNavbar"></ng-container>
+    </ng-container>
+    <!-- / NAVBAR: Right -->
+
+  </div>
+
+  <!-- FOOTER: Above -->
+  <ng-container *ngIf="tinyConfig.layout.footer.position === 'above'">
+    <ng-container *ngTemplateOutlet="footer"></ng-container>
+  </ng-container>
+  <!-- FOOTER: Above -->
+
+</div>
+
+<!-- QUICK PANEL -->
+<tiny-sidebar name="quickPanel" position="right" class="quick-panel">
+  <quick-panel></quick-panel>
+</tiny-sidebar>
+<!-- / QUICK PANEL -->

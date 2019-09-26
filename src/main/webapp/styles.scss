@@ -1,8 +1,24 @@
-/* You can add global styles to this file, and also import other style files */
-@import "../../../node_modules/@angular/material/prebuilt-themes/indigo-pink.css";
+// Import tiny core library
+@import "@tiny/scss/core";
 
-body {
-  margin: 0;
-  padding: 0;
-  background: #f0f0f0;
+// -----------------------------------------------------------------------------------------------------
+// @ Multiple material themes example
+// -----------------------------------------------------------------------------------------------------
+
+// Define the Material palettes
+$yellow-theme-primary: mat-palette($mat-tinydark);
+$yellow-theme-accent: mat-palette($mat-yellow, 600, 400, 700);
+$yellow-theme-warn: mat-palette($mat-red);
+
+// Create the Material theme object
+$yellow-theme: mat-light-theme($yellow-theme-primary, $yellow-theme-accent, $yellow-theme-warn);
+
+// Add ".yellow-theme" class to the body to activate this theme
+.yellow-theme {
+
+  // Generate the Angular Material theme
+  @include angular-material-theme($yellow-theme);
+
+  // Generate the tiny color classes with the new colors...
+  @include generatetinyColorClasses($yellow-theme-primary, $yellow-theme-accent, $yellow-theme-warn);
 }

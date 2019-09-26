@@ -5,6 +5,9 @@ very limited set of features. Fortunately, you are here to save the day and impr
 Feel free to focus on a single feature or aspect of the application. You can find a list of open issues in
 the [issue section](https://github.com/mindsmash/tiny-tasks/issues) of this repository.
 
+## Demo 
+![demo](screenshot.png)
+
 ## Development
 
 The application consists of a frontend and a backend. Both can be started separately. The frontend is

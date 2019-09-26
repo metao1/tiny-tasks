@@ -1,14 +1,21 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/tiny_task
-    username: tiny_task
-    password: demo123
-
+    #url: jdbc:postgresql://localhost:5432/tiny_task
+    #username: tiny_task
+    #password: demo123
+    password: mehrdad
+    url: jdbc:mysql://localhost:3306/tiny_task?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false&serverTimezone=UTC
+    username: mehrdad
+  #jpa:
+    #database-platform: org.hibernate.dialect.PostgreSQL95Dialect
+    #hibernate:
+      #ddl-auto: validate
   jpa:
-    database-platform: org.hibernate.dialect.PostgreSQL95Dialect
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    database: MYSQL
+    show-sql: true
     hibernate:
-      ddl-auto: validate
-
+       ddl-auto: validate
 logging:
   level:
     com.coyoapp.tinytask: DEBUG
