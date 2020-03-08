@@ -6,6 +6,7 @@ import com.coyoapp.tinytask.entity.Tag;
 import com.coyoapp.tinytask.exception.NotFoundException;
 import com.coyoapp.tinytask.repository.TagRepository;
 import com.coyoapp.tinytask.service.GeneralService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,14 +15,11 @@ import java.util.List;
 import java.util.Objects;
 
 @Service
+@RequiredArgsConstructor
 public class TagService implements GeneralService<TagDTO> {
 
-
-  @Autowired
-  private TagRepository tagRepository;
-
-  @Autowired
-  private ObjectFactory objectFactory;
+  private final TagRepository tagRepository;
+  private final ObjectFactory objectFactory;
 
   @Override
   public TagDTO saveOrUpdateModel(TagDTO object) {

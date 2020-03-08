@@ -7,6 +7,7 @@ import com.coyoapp.tinytask.service.impl.TaskService;
 import com.coyoapp.tinytask.util.CustomErrorType;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,10 +19,10 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/api/task", produces = {"application/json"})
 @Api(description = "Operations pertaining to tasks in Task Management System")
+@RequiredArgsConstructor
 public class TaskController {
 
-  @Autowired
-  private TaskService taskService;
+  private final TaskService taskService;
 
   @PostMapping
   @ApiOperation(value = "Create a new task")

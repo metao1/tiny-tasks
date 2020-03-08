@@ -1,21 +1,22 @@
 spring:
-  datasource:
-    #url: jdbc:postgresql://localhost:5432/tiny_task
-    #username: tiny_task
-    #password: demo123
-    password: mehrdad
-    url: jdbc:mysql://localhost:3306/tiny_task?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false&serverTimezone=UTC
-    username: mehrdad
-  #jpa:
-    #database-platform: org.hibernate.dialect.PostgreSQL95Dialect
-    #hibernate:
-      #ddl-auto: validate
   jpa:
-    database-platform: org.hibernate.dialect.MySQL8Dialect
-    database: MYSQL
+    database: POSTGRESQL
     show-sql: true
+    generate-ddl: true
     hibernate:
-       ddl-auto: validate
+      ddl-auto: create-drop
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect # disable clob warning
+    properties: # disable clob warning
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+    open-in-view: false
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://ec2-3-230-106-126.compute-1.amazonaws.com:5432/d1qh5bn375qvc8?sslmode=require
+    username: xkcyfffauwitmu
+    password: 6a6c11f6316af242ca8a25872c8931245d6c645c2a00da1b9335a9f564dfa338
+
 logging:
   level:
     com.coyoapp.tinytask: DEBUG
